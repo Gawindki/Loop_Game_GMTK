@@ -42,9 +42,9 @@ public class BetterTest : MonoBehaviour
         // Bodencheck
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if ( isGrounded == true)
+        /*if ( isGrounded == true)
         {
             Debug.Log("Player is Grounded");
-        } 
+        } */
     }
 }
