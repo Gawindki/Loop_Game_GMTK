@@ -9,6 +9,8 @@ public class TimeSlowDown : MonoBehaviour
     [Tooltip("Faktor, um den die Zeit verlangsamt wird (z. B. 0.5 = halb so schnell)")]
     public float slowFactor = 0.5f;
 
+
+  
     private void OnEnable()
     {
         PhasenManager.OnPhaseChanged += HandlePhaseChange;
@@ -22,10 +24,10 @@ public class TimeSlowDown : MonoBehaviour
     /// <summary>
     /// Wird aufgerufen, wenn sich die Tagesphase ändert.
     /// </summary>
-    /// <param name="phase">Die neue Phase.</param>
+    /// <param ">Die neue Phase.</param>
     private void HandlePhaseChange(DayPhase phase)
     {
-        if (phase == DayPhase.Noon)
+        if (phase == DayPhase.Evening)
         {
             ActivateTimeSlow();
         }
@@ -39,13 +41,13 @@ public class TimeSlowDown : MonoBehaviour
     {
         Time.timeScale = slowFactor;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        Debug.Log("Zeitslow aktiviert (Abend)");
+        Debug.Log("Zeitslow aktiviert");
     }
 
     private void ResetTimeScale()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
-        Debug.Log("Zeitslow deaktiviert (Nicht mehr Nacht)");
+        //Debug.Log("Zeitslow deaktiviert");
     }
 }

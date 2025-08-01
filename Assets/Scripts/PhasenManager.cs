@@ -24,7 +24,7 @@ public class PhasenManager : MonoBehaviour
     public DayPhase currentPhase = DayPhase.Morning;
     public float phaseDuration = 10f; // Dauer jeder Phase in Sekunden
 
-    private float timer;
+    private float timer=0f;
 
     // Event für den Phasenwechsel
     public static event Action<DayPhase> OnPhaseChanged;
@@ -50,14 +50,25 @@ public class PhasenManager : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.unscaledDeltaTime; // <-- echte Zeit
 
         if (timer >= phaseDuration)
         {
-            AdvancePhase();
             timer = 0f;
+            AdvancePhase();
         }
     }
+   /* private void Update()
+    {
+        timer += Time.unscaledDeltaTime;
+
+        if (timer >= phaseDuration)
+        {
+            timer = 0f;
+            AdvancePhase();
+            
+        }
+    }*/
 
     /// <summary>
     /// Wechsel zur nächsten Phase im Zyklus.
@@ -80,9 +91,9 @@ public class PhasenManager : MonoBehaviour
     /// <summary>
     /// Manueller Wechsel (z. B. über Taste oder Knopf).
     /// </summary>
-    public void NextPhaseManually()
+    /*public void NextPhaseManually()
     {
         AdvancePhase();
         timer = 0f;
-    }
+    }*/
 }

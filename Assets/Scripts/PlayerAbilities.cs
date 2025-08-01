@@ -3,10 +3,10 @@ using static TagesphasenWechsler;
 
 public class PlayerAbilities : MonoBehaviour
 {
-    public TeleportF‰higkeit teleportF‰higkeit;
-    public WindstoﬂF‰higkeit windstoﬂF‰higkeit;
-    public InvisibilityAbility invisibilityAbility;
-    public TimeSlowDown timeSlowDown;
+    public TeleportF‰higkeit Morgen;
+    public WindstoﬂF‰higkeit Mittag;
+    public InvisibilityAbility Abend;
+    public TimeSlowDown Nacht;
 
     private void OnEnable()
     {
@@ -21,25 +21,25 @@ public class PlayerAbilities : MonoBehaviour
     private void HandlePhaseChange(DayPhase newPhase)
     {
         // Alle F‰higkeiten deaktivieren
-        teleportF‰higkeit.enabled = false;
-        windstoﬂF‰higkeit.enabled = false;
-        invisibilityAbility.enabled = false;
-        timeSlowDown.enabled = false;
+        Morgen.enabled = false;
+        Mittag.enabled = false;
+        Abend.enabled = false;
+        Nacht.enabled = false;
 
         // Passende F‰higkeit aktivieren
         switch (newPhase)
         {
             case DayPhase.Morning:
-                teleportF‰higkeit.enabled = true;
+                Morgen.enabled = true;
                 break;
             case DayPhase.Noon:
-                windstoﬂF‰higkeit.enabled = true;
+                Mittag.enabled = true;
                 break;
             case DayPhase.Evening:
-                timeSlowDown.enabled = true;
+                Abend.enabled = true;
                 break;
             case DayPhase.Night:
-                invisibilityAbility.enabled = true;
+                Nacht.enabled = true;
                 break;
         }
     }

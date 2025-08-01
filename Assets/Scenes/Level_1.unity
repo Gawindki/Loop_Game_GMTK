@@ -688,10 +688,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb52a9a944a82449bec93a919a34c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "teleportF\xE4higkeit": {fileID: 1228053661232901964, guid: 43ea4dbd8dfed7b4d90b70ab69496174, type: 3}
-  "windsto\xDFF\xE4higkeit": {fileID: 4680570517958869400, guid: 9656a93604b131548a63caae94523bb8, type: 3}
-  invisibilityAbility: {fileID: 429464377188010105, guid: 3b32bde8ff2894449b05e4d6ef452c89, type: 3}
-  timeSlowDown: {fileID: 8921294528728002851, guid: a84d9b3bcc270a4408adce270322f8ca, type: 3}
+  Morgen: {fileID: 1228053661232901964, guid: 43ea4dbd8dfed7b4d90b70ab69496174, type: 3}
+  Mittag: {fileID: 4680570517958869400, guid: 9656a93604b131548a63caae94523bb8, type: 3}
+  Abend: {fileID: 429464377188010105, guid: 3b32bde8ff2894449b05e4d6ef452c89, type: 3}
+  Nacht: {fileID: 8921294528728002851, guid: a84d9b3bcc270a4408adce270322f8ca, type: 3}
 --- !u!4 &1934236502
 Transform:
   m_ObjectHideFlags: 0
