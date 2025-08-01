@@ -1,8 +1,21 @@
-using System;
+﻿using System;
 using UnityEngine;
-using static TagesphasenWechsler;
-using static PlayerAbilities;
 
+/// <summary>
+/// Die 4 Tagesphasen deines Spiels.
+/// </summary>
+public enum DayPhase
+{
+    Morning,
+    Noon,
+    Evening,
+    Night
+}
+
+/// <summary>
+/// Verwaltet den Wechsel der Tagesphasen.
+/// Sendet ein Event bei jeder Änderung.
+/// </summary>
 public class PhasenManager : MonoBehaviour
 {
     public static PhasenManager Instance;
@@ -13,24 +26,32 @@ public class PhasenManager : MonoBehaviour
 
     private float timer;
 
+    // Event für den Phasenwechsel
     public static event Action<DayPhase> OnPhaseChanged;
 
     private void Awake()
     {
+        // Singleton-Setup
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
+        // Starte mit der ersten Phase
         TriggerPhaseChanged();
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
+
         if (timer >= phaseDuration)
         {
             AdvancePhase();
@@ -38,24 +59,30 @@ public class PhasenManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Wechsel zur nächsten Phase im Zyklus.
+    /// </summary>
     private void AdvancePhase()
     {
         currentPhase = (DayPhase)(((int)currentPhase + 1) % Enum.GetValues(typeof(DayPhase)).Length);
         TriggerPhaseChanged();
     }
 
+    /// <summary>
+    /// Löst das Phasenwechsel-Event aus.
+    /// </summary>
     private void TriggerPhaseChanged()
     {
-        Debug.Log("Current Phase: " + currentPhase);
+        Debug.Log("Phase gewechselt zu: " + currentPhase);
         OnPhaseChanged?.Invoke(currentPhase);
     }
 
-    // Optional: manueller Wechsel
-    /*public void NextPhaseManually()
+    /// <summary>
+    /// Manueller Wechsel (z. B. über Taste oder Knopf).
+    /// </summary>
+    public void NextPhaseManually()
     {
         AdvancePhase();
         timer = 0f;
-    }*/
-
-    
+    }
 }

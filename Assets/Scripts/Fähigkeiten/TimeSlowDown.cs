@@ -5,14 +5,14 @@ using static TagesphasenWechsler;
 public class TimeSlowDown : MonoBehaviour
 {
     [SerializeField] private float slowFactor = 0.3f;
-    [SerializeField] private float slowDuration = 0.5f;
-    [SerializeField] private float cooldown = 2f;
+    [SerializeField] private float slowDuration = 5f;
+    [SerializeField] private float cooldown = 1f;
 
     private bool isOnCooldown = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isOnCooldown)
+        if (/*Input.GetKeyDown(KeyCode.E) && */!isOnCooldown && DayPhase.Noon)         //Spieler Input deaktiviert damit man die Zeit nicht dauern verlangsamen kann
         {
             StartCoroutine(ActivateTimeSlow());
         }
