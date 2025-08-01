@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 402941749265022354}
   - component: {fileID: 3606602329976663603}
   - component: {fileID: 6755319468336181323}
+  - component: {fileID: 5750957735937448789}
+  - component: {fileID: 8688263024770253750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -183,6 +185,35 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &5750957735937448789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267412968085147147}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710fdd50fe012fb41a78c6c9142428b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  teleportDistance: 5
+--- !u!114 &8688263024770253750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267412968085147147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4eea67c758d4084e9721e0dcbae77c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowAmount: 0.3
+  duration: 5
+  cooldown: 5
 --- !u!1 &4426543245693445961
 GameObject:
   m_ObjectHideFlags: 0
