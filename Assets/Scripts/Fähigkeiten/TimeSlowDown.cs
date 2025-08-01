@@ -25,7 +25,7 @@ public class TimeSlowDown : MonoBehaviour
     /// <param name="phase">Die neue Phase.</param>
     private void HandlePhaseChange(DayPhase phase)
     {
-        if (phase == DayPhase.Night)
+        if (phase == DayPhase.Noon)
         {
             ActivateTimeSlow();
         }
@@ -39,13 +39,13 @@ public class TimeSlowDown : MonoBehaviour
     {
         Time.timeScale = slowFactor;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        Debug.Log("Zeitslow aktiviert (Nacht)");
+        Debug.Log("Zeitslow aktiviert (Abend)");
     }
 
     private void ResetTimeScale()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
-        Debug.Log("Zeitslow deaktiviert (Nicht-Nacht)");
+        Debug.Log("Zeitslow deaktiviert (Nicht mehr Nacht)");
     }
 }
