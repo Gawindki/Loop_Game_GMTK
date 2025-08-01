@@ -1,38 +1,13 @@
-using UnityEngine;
-using System.Collections;
-using static TagesphasenWechsler;
+﻿using UnityEngine;
 
+/// <summary>
+/// Verlangsamt die Zeit während der Nachtphase.
+/// </summary>
 public class TimeSlowDown : MonoBehaviour
 {
-    [SerializeField] private float slowFactor = 0.3f;
-    [SerializeField] private float slowDuration = 5f;
-    [SerializeField] private float cooldown = 1f;
-
-    private bool isOnCooldown = false;
-
-    void Update()
-    {
-        if (/*Input.GetKeyDown(KeyCode.E) && */!isOnCooldown && DayPhase.Noon)         //Spieler Input deaktiviert damit man die Zeit nicht dauern verlangsamen kann
-        {
-            StartCoroutine(ActivateTimeSlow());
-        }
-    }
-
-    IEnumerator ActivateTimeSlow()
-    {
-        isOnCooldown = true;
-
-        Time.timeScale = slowFactor;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-
-        yield return new WaitForSecondsRealtime(slowDuration);
-
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f;
-
-        yield return new WaitForSecondsRealtime(cooldown);
-        isOnCooldown = false;
-    }
+    [Header("Zeitverlangsamung")]
+    [Tooltip("Faktor, um den die Zeit verlangsamt wird (z. B. 0.5 = halb so schnell)")]
+    public float slowFactor = 0.5f;
 
     private void OnEnable()
     {
@@ -44,17 +19,33 @@ public class TimeSlowDown : MonoBehaviour
         PhasenManager.OnPhaseChanged -= HandlePhaseChange;
     }
 
+    /// <summary>
+    /// Wird aufgerufen, wenn sich die Tagesphase ändert.
+    /// </summary>
+    /// <param name="phase">Die neue Phase.</param>
     private void HandlePhaseChange(DayPhase phase)
     {
         if (phase == DayPhase.Night)
         {
-            Time.timeScale = slowFactor;
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            ActivateTimeSlow();
         }
         else
         {
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = 0.02f;
+            ResetTimeScale();
         }
+    }
+
+    private void ActivateTimeSlow()
+    {
+        Time.timeScale = slowFactor;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        Debug.Log("Zeitslow aktiviert (Nacht)");
+    }
+
+    private void ResetTimeScale()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+        Debug.Log("Zeitslow deaktiviert (Nicht-Nacht)");
     }
 }
